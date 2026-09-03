@@ -1,0 +1,118 @@
+// Version: 4.0.0
+type AccessControlState__812769815 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__386906547<Principal, UserRole__547752454>
+  };
+type Data__265875254<K, V> = {var count : Nat__58649523; kvs : [var ?(K, V)]};
+type EngineState__866558691 =
+  {
+    faults : List__89170296<FaultRecord__341703528>;
+    healthHistory : List__89170296<HealthSnapshot__974929723>;
+    var latestHealth : ?HealthSnapshot__974929723;
+    var missionState : ?MissionState__1042413470;
+    var nextFaultId : Nat
+  };
+type FaultRecord__1039627010 =
+  {
+    faultType : Text;
+    id : Nat;
+    maintenanceRecommendation : Text;
+    severity : Severity__676916889;
+    source : FaultSource__421565795;
+    timestamp : Timestamp__98437472
+  };
+type FaultRecord__341703528 =
+  {
+    faultType : Text;
+    id : Nat;
+    maintenanceRecommendation : Text;
+    severity : Severity__978363870;
+    source : FaultSource__695655501;
+    timestamp : Int
+  };
+type FaultSource__421565795 = {#detected; #injected};
+type FaultSource__695655501 = {#detected; #injected};
+type HealthSnapshot__500397286 =
+  {
+    confidence : Float;
+    healthScore : Float;
+    predictedFault : ?Text;
+    rul : Float;
+    timestamp : Timestamp__98437472
+  };
+type HealthSnapshot__974929723 =
+  {
+    confidence : Float;
+    healthScore : Float;
+    predictedFault : ?Text;
+    rul : Float;
+    timestamp : Int
+  };
+type Internal__161573640<K, V> =
+  {children : [var ?Node__430031793<K, V>]; data : Data__265875254<K, V>};
+type Leaf__1045638083<K, V> = {data : Data__265875254<K, V>};
+type List__1004628775<T> =
+  {
+    var blockIndex : Nat__58649523;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__58649523
+  };
+type List__89170296<T> = List__1004628775<T>;
+type Map__13625999<K, V> =
+  {var root : Node__430031793<K, V>; var size : Nat__58649523};
+type Map__386906547<K, V> = Map__670138087<K, V>;
+type Map__670138087<K, V> = Map__13625999<K, V>;
+type MissionPhase__139612206 =
+  {#ascent; #landing; #launch; #orbit; #postLanding; #preLaunch; #reentry};
+type MissionPhase__709572255 =
+  {#ascent; #landing; #launch; #orbit; #postLanding; #preLaunch; #reentry};
+type MissionState__1042413470 =
+  {
+    currentPhase : MissionPhase__709572255;
+    riskLevel : RiskLevel__383734433;
+    status : MissionStatus__237241056
+  };
+type MissionState__343821332 =
+  {
+    currentPhase : MissionPhase__139612206;
+    riskLevel : RiskLevel__561630550;
+    status : MissionStatus__427978432
+  };
+type MissionStatus__237241056 = {#aborted; #critical; #degraded; #nominal};
+type MissionStatus__427978432 = {#aborted; #critical; #degraded; #nominal};
+type Nat__58649523 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__584597544 =
+  {
+    accessControlState : AccessControlState__812769815;
+    engineState : EngineState__866558691
+  };
+type Node__430031793<K, V> =
+  {#internal : Internal__161573640<K, V>; #leaf : Leaf__1045638083<K, V>};
+type OldActor__831060519 = {};
+type RiskLevel__383734433 = {#critical; #high; #low; #medium};
+type RiskLevel__561630550 = {#critical; #high; #low; #medium};
+type Severity__676916889 = {#critical; #high; #low; #medium};
+type Severity__978363870 = {#critical; #high; #low; #medium};
+type Timestamp__98437472 = Int;
+type UserRole__547752454 = {#admin; #guest; #user};
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20260902_000000" : (_old : OldActor__831060519) -> NewActor__584597544
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__386906547<Principal, UserRole__91647283>
+    };
+  stable engineState :
+    {
+      faults : List__89170296<FaultRecord__1039627010>;
+      healthHistory : List__89170296<HealthSnapshot__500397286>;
+      var latestHealth : ?HealthSnapshot__500397286;
+      var missionState : ?MissionState__343821332;
+      var nextFaultId : Nat
+    }
+};

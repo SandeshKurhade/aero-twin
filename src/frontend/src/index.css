@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: "JetBrains Mono";
+    --radius: 0.5rem;
+
+    /* Aero Mission Control — deep near-black with a cool blue-steel cast */
+    --background: 0.12 0.012 240;
+    --foreground: 0.93 0.01 240;
+    --card: 0.15 0.014 240;
+    --card-foreground: 0.93 0.01 240;
+    --popover: 0.17 0.015 240;
+    --popover-foreground: 0.93 0.01 240;
+
+    /* Cyan telemetry accent */
+    --primary: 0.72 0.14 195;
+    --primary-foreground: 0.12 0.012 240;
+
+    --secondary: 0.19 0.016 240;
+    --secondary-foreground: 0.85 0.01 240;
+    --muted: 0.19 0.016 240;
+    --muted-foreground: 0.55 0.015 240;
+
+    /* Amber warning highlight */
+    --accent: 0.78 0.13 75;
+    --accent-foreground: 0.14 0.02 75;
+
+    --destructive: 0.58 0.21 22;
+    --destructive-foreground: 0.95 0.01 22;
+
+    --success: 0.62 0.16 150;
+    --warning: 0.78 0.13 75;
+
+    --border: 0.26 0.02 240;
+    --input: 0.26 0.02 240;
+    --ring: 0.72 0.14 195;
+
+    /* Telemetry channel colors */
+    --chart-1: 0.72 0.14 195; /* cyan */
+    --chart-2: 0.78 0.13 75; /* amber */
+    --chart-3: 0.68 0.16 150; /* green */
+    --chart-4: 0.62 0.2 25; /* red */
+    --chart-5: 0.7 0.1 250; /* violet */
+
+    --sidebar: 0.14 0.013 240;
+    --sidebar-foreground: 0.9 0.01 240;
+    --sidebar-primary: 0.72 0.14 195;
+    --sidebar-primary-foreground: 0.12 0.012 240;
+    --sidebar-accent: 0.2 0.016 240;
+    --sidebar-accent-foreground: 0.85 0.01 240;
+    --sidebar-border: 0.26 0.02 240;
+    --sidebar-ring: 0.72 0.14 195;
+
+    /* Custom tokens */
+    --gradient-telemetry: linear-gradient(
+      135deg,
+      oklch(0.72 0.14 195),
+      oklch(0.6 0.12 235)
+    );
+    --gradient-panel: linear-gradient(
+      180deg,
+      oklch(0.17 0.015 240),
+      oklch(0.14 0.012 240)
+    );
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    /* Engine 3D material palette — HE 580 boxer. Literal OKLCH for WebGL
+       materials (Canvas/WebGL cannot resolve CSS vars); tokens here are the
+       canonical reference for the Engine3D redesign. */
+    --engine-crankcase: 0.72 0.02 240; /* silver/grey metallic crankcase */
+    --engine-fins: 0.65 0.015 240; /* matte silver cooling fins */
+    --engine-fins-dark: 0.55 0.012 240; /* fin shadow / gap */
+    --engine-head: 0.22 0.01 250; /* dark cylinder head covers */
+    --engine-hub: 0.78 0.02 240; /* polished propeller hub */
+    --engine-hub-dark: 0.4 0.012 250; /* hub recess */
+    --engine-carb: 0.3 0.01 250; /* lower carburetor body */
+    --engine-gold: 0.72 0.13 75; /* mounting hardware / accents */
+    --engine-red: 0.58 0.21 22; /* carb / fault accent */
+    --engine-telemetry: 0.72 0.14 195; /* cyan running/heat glow */
+    --engine-warning: 0.78 0.13 75; /* amber caution glow */
+  }
+
+  .dark {
+    --background: 0.12 0.012 240;
+    --foreground: 0.93 0.01 240;
+    --card: 0.15 0.014 240;
+    --card-foreground: 0.93 0.01 240;
+    --popover: 0.17 0.015 240;
+    --popover-foreground: 0.93 0.01 240;
+
+    --primary: 0.72 0.14 195;
+    --primary-foreground: 0.12 0.012 240;
+
+    --secondary: 0.19 0.016 240;
+    --secondary-foreground: 0.85 0.01 240;
+    --muted: 0.19 0.016 240;
+    --muted-foreground: 0.55 0.015 240;
+
+    --accent: 0.78 0.13 75;
+    --accent-foreground: 0.14 0.02 75;
+
+    --destructive: 0.58 0.21 22;
+    --destructive-foreground: 0.95 0.01 22;
+
+    --success: 0.62 0.16 150;
+    --warning: 0.78 0.13 75;
+
+    --border: 0.26 0.02 240;
+    --input: 0.26 0.02 240;
+    --ring: 0.72 0.14 195;
+
+    --chart-1: 0.72 0.14 195;
+    --chart-2: 0.78 0.13 75;
+    --chart-3: 0.68 0.16 150;
+    --chart-4: 0.62 0.2 25;
+    --chart-5: 0.7 0.1 250;
+
+    --sidebar: 0.14 0.013 240;
+    --sidebar-foreground: 0.9 0.01 240;
+    --sidebar-primary: 0.72 0.14 195;
+    --sidebar-primary-foreground: 0.12 0.012 240;
+    --sidebar-accent: 0.2 0.016 240;
+    --sidebar-accent-foreground: 0.85 0.01 240;
+    --sidebar-border: 0.26 0.02 240;
+    --sidebar-ring: 0.72 0.14 195;
+
+    --gradient-telemetry: linear-gradient(
+      135deg,
+      oklch(0.72 0.14 195),
+      oklch(0.6 0.12 235)
+    );
+    --gradient-panel: linear-gradient(
+      180deg,
+      oklch(0.17 0.015 240),
+      oklch(0.14 0.012 240)
+    );
+    --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    /* Engine 3D material palette — HE 580 boxer (literal OKLCH for WebGL) */
+    --engine-crankcase: 0.72 0.02 240;
+    --engine-fins: 0.65 0.015 240;
+    --engine-fins-dark: 0.55 0.012 240;
+    --engine-head: 0.22 0.01 250;
+    --engine-hub: 0.78 0.02 240;
+    --engine-hub-dark: 0.4 0.012 250;
+    --engine-carb: 0.3 0.01 250;
+    --engine-gold: 0.72 0.13 75;
+    --engine-red: 0.58 0.21 22;
+    --engine-telemetry: 0.72 0.14 195;
+    --engine-warning: 0.78 0.13 75;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .gradient-telemetry {
+    background-image: var(--gradient-telemetry);
+  }
+  .gradient-panel {
+    background-image: var(--gradient-panel);
+  }
+  .shadow-subtle {
+    box-shadow: var(--shadow-subtle);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 12px oklch(0.72 0.14 195 / 0.5);
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "overview": "An AI-enabled real-time digital twin dashboard for a representative MALE-UAV aero piston engine, with an interactive 3D engine, live synthetic sensor simulation, AI fault detection, health and RUL scoring, fault injection, and mission simulation.",
+  "features": [
+    "Interactive 3D animated 4-cylinder piston engine",
+    "Real-time synthetic sensor simulation",
+    "AI fault detection with health score and RUL",
+    "Fault injection and mission simulation",
+    "Dark aerospace dashboard with live gauges and graphs"
+  ],
+  "category": "tool",
+  "tags": [
+    "digital-twin",
+    "aerospace",
+    "ai",
+    "simulation",
+    "dashboard"
+  ],
+  "last_updated": "2026-09-02T14:21:22.162Z"
+}

@@ -1,0 +1,130 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type Severity = 
+ variant {
+   critical;
+   high;
+   low;
+   medium;
+ };
+type RiskLevel = 
+ variant {
+   critical;
+   high;
+   low;
+   medium;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type MissionStatus = 
+ variant {
+   aborted;
+   critical;
+   degraded;
+   nominal;
+ };
+type MissionState = 
+ record {
+   currentPhase: MissionPhase;
+   riskLevel: RiskLevel;
+   status: MissionStatus;
+ };
+type MissionPhase = 
+ variant {
+   ascent;
+   landing;
+   launch;
+   orbit;
+   postLanding;
+   preLaunch;
+   reentry;
+ };
+type HealthSnapshot = 
+ record {
+   confidence: float64;
+   healthScore: float64;
+   predictedFault: opt text;
+   rul: float64;
+   timestamp: Timestamp;
+ };
+type FaultSource = 
+ variant {
+   detected;
+   injected;
+ };
+type FaultRecord = 
+ record {
+   faultType: text;
+   id: nat;
+   maintenanceRecommendation: text;
+   severity: Severity;
+   source: FaultSource;
+   timestamp: Timestamp;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getFaults: () -> (vec FaultRecord) query;
+  getHealthHistory: () -> (vec HealthSnapshot) query;
+  getLatestHealth: () -> (opt HealthSnapshot) query;
+  getMissionState: () -> (opt MissionState) query;
+  isCallerAdmin: () -> (bool) query;
+  recordFault: (fault: FaultRecord) -> ();
+  recordHealthSnapshot: (snapshot: HealthSnapshot) -> ();
+  schema: () -> (text) query;
+  setMissionState: (state: MissionState) -> ();
+}
